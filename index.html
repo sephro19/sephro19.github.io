@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roseph NZABA | Développeur Web & Designer Graphiste</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        /* Styles supplémentaires pour cette version */
+        :root {
+            --night-blue: #0a192f;
+            --light-blue: #112240;
+            --accent-blue: #64ffda;
+            --text-light: #ccd6f6;
+            --text-gray: #8892b0;
+        }
+        
+        body {
+            background-color: var(--night-blue);
+            color: var(--text-light);
+        }
+        
+        .navbar {
+            background-color: rgba(10, 25, 47, 0.95);
+        }
+        
+        .logo, .nav-link {
+            color: var(--text-light);
+        }
+        
+        .section {
+            background-color: var(--night-blue);
+        
+        }
+        
+        .skills-category, .project-card, .timeline-content,
+        .contact-info, .service-card {
+            background-color: var(--light-blue);
+        }
+        
+        .highlight, .section-title::after, .timeline-date,
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--accent-blue);
+        }
+        
+        .highlight {
+            color: white;
+        }
+        
+        .section-title, h1, h2, h3, h4 {
+            color: var(--text-light);
+        }
+        
+        p, .hero-description, .timeline-institution {
+            color: var(--text-gray);
+        }
+        
+        .btn-primary {
+            background-color: var(--accent-blue);
+            color: var(--night-blue);
+        }
+        
+        .btn-primary:hover {
+            background-color: #52d3b3;
+        }
+        
+        .btn-secondary {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--accent-blue);
+            color: var(--night-blue);
+        }
+        
+        .image-decoration {
+            border-color: var(--accent-blue);
+        }
+        
+        .personal-skill {
+            background-color: rgba(100, 255, 218, 0.1);
+        }
+        
+        .interest-item {
+            background-color: var(--light-blue);
+        }
+        
+        .interest-item:hover {
+            background-color: var(--accent-blue);
+        }
+        
+        .footer {
+            background-color: #020c1b;
+        }
+        .banner-slider {
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 140px;
+    border-radius: 10px;
+}
+
+.banner-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Tablettes */
+@media screen and (max-width: 992px) {
+    .banner-slider {
+        height: 450px;
+        margin-top: 120px;
+        border-radius: 8px;
+    }
+}
+
+/* Mobiles paysage */
+@media screen and (max-width: 768px) {
+    .banner-slider {
+        height: 350px;
+        margin-top: 100px;
+        border-radius: 6px;
+    }
+}
+
+/* Mobiles portrait */
+@media screen and (max-width: 480px) {
+    .banner-slider {
+        height: 250px;
+        margin-top: 80px;
+        border-radius: 4px;
+    }
+}
+
+/* Très petits mobiles */
+@media screen and (max-width: 320px) {
+    .banner-slider {
+        height: 200px;
+        margin-top: 70px;
+        border-radius: 4px;
+    }
+}
+        
+        .banner-slide.active {
+            opacity: 1;
+        }
+        
+        .banner-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        
+        .banner-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .banner-dot.active {
+            background-color: var(--accent-blue);
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .video-card {
+            background-color: var(--light-blue);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            height: 180px;
+            background-color: #1a2c4d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-blue);
+            font-size: 3rem;
+        }
+        
+        .video-info {
+            padding: 20px;
+        }
+        
+        .video-info h3 {
+            margin-bottom: 10px;
+            color: var(--accent-blue);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .service-card {
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-blue);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--accent-blue);
+            margin-bottom: 15px;
+        }
+        
+        .service-price {
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-top: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="images/logo2blanc.png" alt="Logo Roseph NZABA" class="logo-img">
+            </a>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#accueil" class="nav-link active">Accueil</a></li>
+                <li><a href="#a-propos" class="nav-link">À propos</a></li>
+                <li><a href="#competences" class="nav-link">Compétences</a></li>
+                <li><a href="#projets" class="nav-link">Projets</a></li>
+                <li><a href="#montages" class="nav-link">Montages Vidéo</a></li>
+                <li><a href="#services" class="nav-link">Mes Services</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Bannière avec slider -->
+    <div class="banner-slider">
+        <div class="banner-slide active" style="background-image: url('images/Gemini_Generated_Image_y3ub1uy3ub1uy3ub.png');"></div>
+        <div class="banner-slide" style="background-image: url('images/baniere_poster3.png');"></div>
+        <div class="banner-slide" style="background-image: url('images/baniere_montage2.png');"></div>
+        <div class="banner-slide" style="background-image: url('images/gescar.jpg');"></div>
+        <div class="banner-controls">
+            <div class="banner-dot active" data-slide="0"></div>
+            <div class="banner-dot" data-slide="1"></div>
+            <div class="banner-dot" data-slide="2"></div>
+            <div class="banner-dot" data-slide="3"></div>
+        </div>
+    </div>
+
+    <!-- Section Accueil -->
+    <section class="section" id="accueil">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Roseph NZABA KIND.19</h1>
+                    <h2 class="hero-subtitle">Développeur Web & Designer Graphiste</h2>
+                    <p class="hero-description">Je combine rigueur technique et créativité pour proposer des solutions numériques complètes et adaptées aux besoins des clients.</p>
+                    <div class="hero-buttons">
+                        <a href="#projets" class="btn btn-primary">Voir mes projets</a>
+                        <a href="MON%20CV%20NZ%202026.pdf" class="btn btn-secondary" download>Télécharger mon CV</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="image-wrapper">
+                        <img src="images/2025-02-23-20-01-06-439-POP_OUT.jpg" alt="Photo de Roseph NZABA">
+                        <div class="image-decoration"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section À propos -->
+    <section class="section" id="a-propos">
+        <div class="container">
+            <h2 class="section-title">À propos de moi</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Titulaire d'une licence en développement informatique, avec une spécialisation en conception d'applications et en résolution de problèmes, je possède également des compétences en design graphique. Cette polyvalence me permet d'allier rigueur technique et créativité afin de proposer des services numériques complets et adaptés aux besoins des clients.</p>
+                    <p>Curieux et animé par une volonté constante d'apprendre et de me perfectionner, j'envisage de poursuivre mes études tout en développant continuellement mon expérience professionnelle.</p>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <i class="fas fa-user"></i>
+                            <div>
+                                <h4>Nom</h4>
+                                <p>Roseph NZABA</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-birthday-cake"></i>
+                            <div>
+                                <h4>Naissance</h4>
+                                <p>21 mai à Brazzaville</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Téléphone</h4>
+                                <p>06-480-40-01</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>rosephnzaba19@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Adresse</h4>
+                                <p>02 rue Jacob Binaki Diata, Brazzaville</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-language"></i>
+                            <div>
+                                <h4>Langues</h4>
+                                <p>Français, Anglais (B2)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <h3>12+</h3>
+                        <p>Projets réalisés</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>3+</h3>
+                        <p>Années d'expérience</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>20+</h3>
+                        <p>Designs créés</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>100%</h3>
+                        <p>Engagement</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Compétences -->
+    <section class="section" id="competences">
+        <div class="container">
+            <h2 class="section-title">Mes compétences</h2>
+            <div class="skills-container">
+                <div class="skills-category">
+                    <h3><i class="fas fa-code"></i> Langages de programmation</h3>
+                    <div class="skill">
+                        <div class="skill-header">
+                            <span>PHP</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-header">
+                            <span>JavaScript</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-header">
+                            <span>Python</span>
+                            <span>50%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-header">
+                            <span>C++ / C</span>
+                            <span>70%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 70%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-header">
+                            <span>C# / Java</span>
+                            <span>65%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 65%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skills-category">
+                    <h3><i class="fas fa-database"></i> Bases de données & Outils</h3>
+                    <div class="skill">
+                        <div class="skill-header">
+                            <span>MySQL / SQL Server</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-header">
+                            <span>Oracle</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 70%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-header">
+                            <span>Adobe Photoshop | Illustrator | Premiere pro</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-header">
+                            <span>Figma / Canva</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-header">
+                            <span>Pack Office</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Projets -->
+    <section class="section" id="projets">
+        <div class="container">
+            <h2 class="section-title">Mes projets</h2>
+            <div class="projects-filter">
+                <button class="filter-btn active" data-filter="all">Tous</button>
+                <button class="filter-btn" data-filter="web">Développement Web</button>
+                <button class="filter-btn" data-filter="design">Design Graphique</button>
+            </div>
+            <div class="projects-grid">
+                <!-- Projets Développement Web (4 projets) -->
+
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <img src="images/gescar.jpg" alt="Gestion véhicules commerciaux">
+                        <div class="project-overlay">
+                            <a href="https://gescar.fwh.is/index.php" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Gestion Véhicules Commerciaux</h3>
+                        <p>Système de gestion de flotte de véhicules avec suivi maintenance et coûts.</p>
+                        <div class="project-tags">
+                            <span>PHP</span>
+                            <span>JavaScript</span>
+                            <span>SQL Server</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <img src="images/fastfood.jpg" alt="Site web fast-food">
+                        <div class="project-overlay">
+                            <a href="https://monsitefastfood.com" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Site web Fast-Food</h3>
+                        <p>Création complète d'un site web pour un fast-food avec système de commande en ligne.</p>
+                        <div class="project-tags">
+                            <span>PHP</span>
+                            <span>MySQL</span>
+                            <span>JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <img src="images/Capture_2026.jpg" alt="Application web supermarché">
+                        <div class="project-overlay">
+                            <a href="http://localhost/supermarche1/index.php" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Application Supermarché</h3>
+                        <p>Application web complète de gestion de supermarché avec inventaire et caisses.</p>
+                        <div class="project-tags">
+                            <span>PHP</span>
+                            <span>JavaScript</span>
+                            <span>MySQL</span>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                
+                
+<!--
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <img src="images/GFAB_Bache_3.jpg" alt="Site E-commerce">
+                        <div class="project-overlay">
+                            <a href="https://monshop.com" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Plateforme E-commerce</h3>
+                        <p>Site e-commerce complet avec panier, paiement et interface administrateur.</p>
+                        <div class="project-tags">
+                            <span>PHP</span>
+                            <span>JavaScript</span>
+                            <span>MySQL</span>
+                        </div>
+                    </div>
+                </div>
+-->                
+                <!-- Projets Design Graphique (8 projets) -->
+                <div class="project-card" data-category="design">
+                    <div class="project-image">
+                        <img src="images/Gaius Poster Cover.jpg" alt="Affiche ACB">
+                        <div class="project-overlay">
+                            <a href="images/Gaius Poster.jpg" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>POSTER FOOTBALL MAKOUTA</h3>
+                        <p>Poster football Gaïus MAKOUTA saison 2024-2025 ALANYASPOR.</p>
+                        <div class="project-tags">
+                            <span>Photoshop</span>
+                            <span>Illustrator</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="design">
+                    <div class="project-image">
+                        <img src="images/Antoine Makoumbou Cover.jpg" alt="Poster match">
+                        <div class="project-overlay">
+                            <a href="images/Antoine_MAKOUMBOU_Poster_ORIGINAL.png" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>POSTER FOOTBALL MAKOUMBOU</h3>
+                        <p>Poster football Antoine MAKOUMBOU 2024-2025 CAGLIARI.</p>
+                        <div class="project-tags">
+                            <span>Photoshop</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="design">
+                    <div class="project-image">
+                        <img src="images/LOGO_PAROLIER_0RIGINAL sans fond.png" alt="Poster Makoum">
+                        <div class="project-overlay">
+                            <a href="images/LOGO_PAROLIER_0RIGINAL sans fond.png" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>LOGO LE_PAROLIER 242 </h3>
+                        <p>LOGO représentatif du créateur de contenu LeParolier242</p>
+                        <div class="project-tags">
+                            <span>Photoshop</span>
+                            <span>Illustrator</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="design">
+                    <div class="project-image">
+                        <img src="images/LOGO2_ORANGE_VERT.jpg" alt="Bannière Murphy">
+                        <div class="project-overlay">
+                            <a href="images/LOGO2_ORANGE_VERT.jpg" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>LOGO AROLA SHOP</h3>
+                        <p>LOGO d'illustration</p>
+                        <div class="project-tags">
+                            <span>Photoshop</span>
+                            <span>Canva</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="design">
+                    <div class="project-image">
+                        <img src="images/Dechan Mouss Cover 1.jpg" alt="Affiche Coach Mira">
+                        <div class="project-overlay">
+                            <a href="images/Dechan Mouss Cover 1.jpg" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>POSTER FOOTBALL MOUSSAVOU </h3>
+                        <p>Poster football Dechan MOUSSAVOU 2024-2025 SELECTION NATIONALE. </p>
+                        <div class="project-tags">
+                            <span>Illustrator</span>
+                            <span>Photoshop</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="design">
+                    <div class="project-image">
+                        <img src="images/ANNA_Perle.png" alt="Logo Démocrate">
+                        <div class="project-overlay">
+                            <a href="images/ANNA_Perle.png" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>T-SHIRT PERSONNALISE</h3>
+                        <p>Création de design pour T-shirt à la perssonalisation du client.</p>
+                        <div class="project-tags">
+                            <span>Illustrator</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="design">
+                    <div class="project-image">
+                        <img src="images/ACB vs AC.LISSANGA POSTER.jpg" alt="Logo Sam's">
+                        <div class="project-overlay">
+                            <a href="images/ACB vs AC.LISSANGA POSTER.jpg" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>AFFICHE D'AVANT-MATCH</h3>
+                        <p>Affiche ACB vs ACADEMIE LISSANGA division departemental 2.</p>
+                        <div class="project-tags">
+                            <span>Illustrator</span>
+                            <span>Photoshop</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="design">
+                    <div class="project-image">
+                        <img src="images/Carte d'invitation Mariage Originale.jpg" alt="Logo Mezzo Events">
+                        <div class="project-overlay">
+                            <a href="images/Carte d'invitation Mariage Originale.jpg" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>CARTE DE MARIAGE PROFFESSIONELLE</h3>
+                        <p>Carte d'invitation de mariage Pro.</p>
+                        <div class="project-tags">
+                            <span>Illustrator</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Montages Vidéo -->
+    <section class="section" id="montages">
+        <div class="container">
+            <h2 class="section-title">Mes Montages Vidéo</h2>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <div class="video-info">
+                        <h3>Clip Musical(amateur) Vimana 2023</h3>
+                        <p>Uniquement le montage d'un clip musical pour artiste local CLIN.</p>
+                        <a href="https://youtu.be/mIfjB-aPbB8?list=RDmIfjB-aPbB8" target="_blank" class="btn btn-primary" style="margin-top: 10px;">Voir sur YouTube</a>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <div class="video-info">
+                        <h3>Clip Musical(amateur) 2023 Bombay</h3>
+                        <p>Montage d'un clip musical pour artiste local CLIN.</p>
+                        <a href="https://youtu.be/ahSt3Yyowhg?list=RDahSt3Yyowhg" target="_blank" class="btn btn-primary" style="margin-top: 10px;">Voir sur YouTube</a>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <div class="video-info">
+                        <h3>Clip Musical(amateur) 2023 Kilimandjaro</h3>
+                        <p>Montage d'un clip musical pour artiste local CLIN.</p>
+                        <a href="https://youtu.be/Ca_-i1n6CtM?list=RDCa_-i1n6CtM" target="_blank" class="btn btn-primary" style="margin-top: 10px;">Voir sur YouTube</a>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <div class="video-info">
+                        <h3>Tutoriel Design</h3>
+                        <p>Vidéo tutorielle sur les techniques de design graphique d'un Poster football.</p>
+                        <a href="images/MONTAGE_MAKOUMBOU.jpg" target="_blank" class="btn btn-primary" style="margin-top: 10px;">Voir sur YouTube</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Services -->
+    <section class="section" id="services">
+        <div class="container">
+            <h2 class="section-title">Mes Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Crack PS3</h3>
+                    <p>Installation complète de crack pour PS3 avec garantie</p>
+                    <div class="service-price">6.000 FCFA</div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-compact-disc"></i>
+                    </div>
+                    <h3>Jeux PS3</h3>
+                    <p>Vente de jeux PS3 (installation incluse)</p>
+                    <div class="service-price">1.000 FCFA/jeu</div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>E-commerce</h3>
+                    <p>Création de boutiques en ligne professionnelles</p>
+                    <div class="service-price">Sur devis</div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <h3>CV vidéo Football</h3>
+                    <p> Réalisation et Montage</p>
+                    <div class="service-price"> À partir de 5.000 FCFA et plus</div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Design Graphique</h3>
+                    <p>Logos, affiches, flyers, cartes de visite</p>
+                    <div class="service-price">À partir de 5.000 FCFA</div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Développement Web</h3>
+                    <p>Sites vitrines, applications web sur mesure, etc...</p>
+                    <div class="service-price">À partir de 50.000 FCFA</div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Montage Vidéo</h3>
+                    <p>Montage professionnel pour la création de contenu, événements, etc..</p>
+                    <div class="service-price">À partir de 15.000 FCFA</div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Support Technique</h3>
+                    <p>Dépannage informatique et installation logiciels</p>
+                    <div class="service-price">À partir de 5.000 FCFA</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Formations -->
+    <section class="section" id="formations">
+        <div class="container">
+            <h2 class="section-title">Mes formations</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2022 - 2025</div>
+                    <div class="timeline-content">
+                        <h3>Licence en Développement Informatique / Génie logiciel</h3>
+                        <p class="timeline-institution">Institut International Polytechnique & Commerce (2i)</p>
+                        <p>Spécialisation en conception d'applications et résolution de problèmes.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section class="section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contactez-moi</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Travaillons ensemble !</h3>
+                    <p>Je suis ouvert à de nouvelles opportunités et collaborations. N'hésitez pas à me contacter pour discuter de votre projet.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Téléphone</h4>
+                                <p>06-480-40-01</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>rosephnzaba19@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Adresse</h4>
+                                <p>02 rue Jacob Binaki Diata, Brazzaville, Congo</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" title="Behance"><i class="fab fa-behance"></i></a>
+                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" placeholder="Votre nom" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Votre email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Sujet" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="5" placeholder="Votre message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Envoyer le message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Roseph NZABA. Tous droits réservés.</p>
+            <p>Développeur Web & Designer Graphiste | Brazzaville, Congo</p>
+        </div>
+    </footer>
+
+    <!-- Bouton retour en haut -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+    <script>
+        // Script pour le slider de bannière
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.banner-slide');
+            const dots = document.querySelectorAll('.banner-dot');
+            let currentSlide = 0;
+            
+            function showSlide(n) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                currentSlide = n;
+                if (currentSlide >= slides.length) currentSlide = 0;
+                if (currentSlide < 0) currentSlide = slides.length - 1;
+                
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+            }
+            
+            // Navigation par points
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    showSlide(index);
+                });
+            });
+            
+            // Défilement automatique
+            setInterval(() => {
+                showSlide(currentSlide + 1);
+            }, 5000);
+            
+            // Navigation au clavier
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') showSlide(currentSlide - 1);
+                if (e.key === 'ArrowRight') showSlide(currentSlide + 1);
+            });
+            
+            // Initialiser
+            showSlide(0);
+        });
+    </script>
+</body>
+</html>
